@@ -1,0 +1,18 @@
+$font-main: 'Roboto', Helvetica, sans-serif;
+
+html,body {
+    font-size: 16px;
+}
+
+
+h1 {
+    color: $primary-text-light;
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+}
+
+h2 {
+    color: $primary-light;
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
+}
