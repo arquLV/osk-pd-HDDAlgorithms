@@ -1,11 +1,11 @@
-class Algorithm {
+class AlgorithmBase {
     constructor() {
 
     }
 
     run(trackQueue: number[]) {
-        
+
     }
 }
 
-export default Algorithm;
+export default AlgorithmBase;

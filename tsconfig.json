@@ -8,6 +8,9 @@
    },
    "compileOnSave": false,
    "buildOnSave": false,
+   "filesGlob": [
+        "./src/ts/interfaces.d.ts"
+   ],
    "atom": {
       "rewriteTsconfig": false
    }

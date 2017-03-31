@@ -46,7 +46,8 @@
 
 	__webpack_require__(1);
 	__webpack_require__(2);
-	__webpack_require__(4);
+	__webpack_require__(3);
+	__webpack_require__(6);
 	module.exports = __webpack_require__(5);
 
 
@@ -56,51 +57,86 @@
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var Algorithm = (function () {
-	    function Algorithm() {
+	var AlgorithmBase = (function () {
+	    function AlgorithmBase() {
 	    }
-	    Algorithm.prototype.run = function (trackQueue) {
+	    AlgorithmBase.prototype.run = function (trackQueue) {
 	    };
-	    return Algorithm;
+	    return AlgorithmBase;
 	}());
-	exports.default = Algorithm;
+	exports.default = AlgorithmBase;
 
 
 /***/ },
 /* 2 */
+/***/ function(module, exports) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var Controller = (function () {
+	    function Controller() {
+	        this.algorithmSelect = document.getElementById('algorithm-select');
+	        this.setupSelectListener();
+	    }
+	    Controller.prototype.setupSelectListener = function () {
+	        var _this = this;
+	        this.algorithmSelect.addEventListener('change', function () {
+	            console.log(_this.algorithmSelect.value);
+	            _this.algorithmChangeCallback(_this.algorithmSelect.value);
+	        });
+	    };
+	    Controller.prototype.onAlgorithmChange = function (callback) {
+	        this.algorithmChangeCallback = callback;
+	    };
+	    return Controller;
+	}());
+	exports.default = Controller;
+
+
+/***/ },
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var paper = __webpack_require__(3);
+	var paper = __webpack_require__(4);
+	var Controller_1 = __webpack_require__(2);
+	var FCFS_1 = __webpack_require__(5);
 	var OSKApp = (function () {
 	    function OSKApp(canvas) {
 	        this.canvas = canvas;
+	        this.controller = new Controller_1.default();
+	        this.algorithms = {
+	            fcfs: new FCFS_1.default(),
+	        };
+	        this.setCurrentAlgorithm('fcfs');
+	        this.controller.onAlgorithmChange(this.setCurrentAlgorithm.bind(this));
 	        paper.setup(this.canvas);
+	        var path = new paper.Path();
+	        var start = new paper.Point(100, 100);
+	        path.moveTo(start);
+	        path.strokeColor = 'black';
+	        path.lineTo(start.add([150, 100]));
+	        path.lineTo(start.add([100, -50]));
+	        path.smooth();
+	        paper.view.draw();
 	    }
+	    OSKApp.prototype.setCurrentAlgorithm = function (algorithmID) {
+	        if (this.algorithms.hasOwnProperty(algorithmID)) {
+	            this.currentAlgorithm = this.algorithms[algorithmID];
+	            console.log(this.currentAlgorithm);
+	        }
+	    };
 	    return OSKApp;
 	}());
 	exports.default = OSKApp;
 
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports) {
 
 	module.exports = paper;
-
-/***/ },
-/* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
-	var OSKApp_1 = __webpack_require__(2);
-	document.addEventListener('DOMContentLoaded', function (event) {
-	    var targetCanvas = document.getElementById('main-canvas');
-	    var oskAlgorithms = new OSKApp_1.default(targetCanvas);
-	});
-
 
 /***/ },
 /* 5 */
@@ -118,14 +154,31 @@
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var Algorithm_1 = __webpack_require__(1);
+	var AlgorithmBase_1 = __webpack_require__(1);
 	var FCFS = (function (_super) {
 	    __extends(FCFS, _super);
 	    function FCFS() {
 	        return _super.call(this) || this;
 	    }
+	    FCFS.prototype.run = function (trackQueue) {
+	        _super.prototype.run.call(this, trackQueue);
+	    };
 	    return FCFS;
-	}(Algorithm_1.default));
+	}(AlgorithmBase_1.default));
+	exports.default = FCFS;
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var OSKApp_1 = __webpack_require__(3);
+	document.addEventListener('DOMContentLoaded', function (event) {
+	    var targetCanvas = document.getElementById('main-canvas');
+	    var oskAlgorithms = new OSKApp_1.default(targetCanvas);
+	});
 
 
 /***/ }

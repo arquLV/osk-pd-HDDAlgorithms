@@ -1,7 +1,13 @@
-import Algorithm from '../Algorithm';
+import AlgorithmBase from '../AlgorithmBase';
 
-class FCFS extends Algorithm {
+class FCFS extends AlgorithmBase {
     constructor() {
         super();
     }
+
+    run(trackQueue: number[]) {
+        super.run(trackQueue);
+    }
 }
+
+export default FCFS;

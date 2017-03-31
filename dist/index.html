@@ -13,13 +13,18 @@
                 <h2>Cieto disku plānošanas algoritmi</h2>
 
                 <form>
-                    <select>
+                    <select id="algorithm-select">
                         <option value="fcfs" selected>FCFS</option>
+                        <option value="sstf">SSTF</option>
+                        <option value="scan">SCAN</option>
+                        <option value="cscan">C-SCAN</option>
+                        <option value="look">LOOK</option>
+                        <option value="clook">C-LOOK</option>
                     </select>
                 </form>
             </div>
             <div class="canvas-wrapper">
-            <canvas id="main-canvas"></canvas>
+            <canvas id="main-canvas" height=600 width=600></canvas>
             </div>
         </main>
 
