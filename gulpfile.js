@@ -5,7 +5,7 @@ var browserSync = require('browser-sync').create()
 var sass = require('gulp-sass')
 
 gulp.task('build', function () {
-   gulp.src('src/ts/**/*.ts')
+   return gulp.src('src/ts/**/*.ts')
     .pipe(typescript('./tsconfig.json'))
     .pipe(gulp.dest('./src/.tmp'))
     .pipe(webpack({
@@ -25,6 +25,11 @@ gulp.task('build', function () {
     .pipe(gulp.dest('./dist'))
 })
 
+gulp.task('build-watch', ['build'], function(done) {
+    browserSync.reload();
+    done();
+})
+
 gulp.task('sass', function () {
    gulp.src('src/sass/*.scss')
    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
@@ -36,11 +41,11 @@ gulp.task('default', ['build', 'sass'], function() {
 
    browserSync.init({
       server: "./dist/",
-      open: false,
-      port: 4000
+      port: 4000,
+      realoadDelay: 300
    });
 
    gulp.watch('src/sass/**/*.scss', ['sass'])
-   gulp.watch('src/ts/**/*.ts', ['build'], browserSync.reload)
+   gulp.watch('src/ts/**/*.ts', ['build-watch'])
 
 })

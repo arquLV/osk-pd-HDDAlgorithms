@@ -9,4 +9,38 @@ div.controls {
 
     font-family: $font-main;
 
+    form {
+        margin: 30px 0;
+
+        input, select {
+            -webkit-appearance: none;
+            outline: none;
+            color: $primary-text-dark;
+            background: $primary-light*1.2;
+            @include transition(all, 150, ease-out);
+
+            &:hover {
+                background: #fff;
+            }
+        }
+
+        select {
+            position: relative;
+            width: 100%;
+            border-radius: 0;
+            padding-left: 10px;
+            padding: 8px 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            
+            &, &:hover {
+                background-image: url('assets/dropdown.svg');
+                background-size: 15px;
+                background-repeat: no-repeat;
+                background-position: 95% center;
+            }
+            
+        }
+    }
 }

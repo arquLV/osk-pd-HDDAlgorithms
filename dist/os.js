@@ -122,7 +122,7 @@
 	var FCFS = (function (_super) {
 	    __extends(FCFS, _super);
 	    function FCFS() {
-	        return _super !== null && _super.apply(this, arguments) || this;
+	        return _super.call(this) || this;
 	    }
 	    return FCFS;
 	}(Algorithm_1.default));
