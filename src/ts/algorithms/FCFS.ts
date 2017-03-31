@@ -6,7 +6,7 @@ class FCFS extends AlgorithmBase {
     }
 
     run(trackQueue: number[]) {
-        super.run(trackQueue);
+        return trackQueue;
     }
 }
 

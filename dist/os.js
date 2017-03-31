@@ -57,11 +57,14 @@
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
+	var ReadDirection;
+	(function (ReadDirection) {
+	    ReadDirection[ReadDirection["Left"] = 0] = "Left";
+	    ReadDirection[ReadDirection["Right"] = 1] = "Right";
+	})(ReadDirection || (ReadDirection = {}));
 	var AlgorithmBase = (function () {
 	    function AlgorithmBase() {
 	    }
-	    AlgorithmBase.prototype.run = function (trackQueue) {
-	    };
 	    return AlgorithmBase;
 	}());
 	exports.default = AlgorithmBase;
@@ -77,6 +80,10 @@
 	    function Controller() {
 	        this.algorithmSelect = document.getElementById('algorithm-select');
 	        this.setupSelectListener();
+	        this.algorithmQueue = document.getElementById('algorithm-queue');
+	        this.setupTextareaCharacterCheck();
+	        this.algorithmRunButton = document.getElementById('algorithm-run');
+	        this.setupRunButton();
 	    }
 	    Controller.prototype.setupSelectListener = function () {
 	        var _this = this;
@@ -87,6 +94,34 @@
 	    };
 	    Controller.prototype.onAlgorithmChange = function (callback) {
 	        this.algorithmChangeCallback = callback;
+	    };
+	    Controller.prototype.setupTextareaCharacterCheck = function () {
+	        this.algorithmQueue.addEventListener('keypress', function (event) {
+	            var keycode = event.which;
+	            console.log(keycode);
+	            if ((keycode >= 48 && keycode <= 57) || keycode == 44) {
+	                return true;
+	            }
+	            else {
+	                event.preventDefault();
+	                return false;
+	            }
+	        });
+	    };
+	    Controller.prototype.setupRunButton = function () {
+	        var _this = this;
+	        this.algorithmRunButton.addEventListener('click', function (event) {
+	            event.preventDefault();
+	            var queueString = _this.getSanitizedQueueString();
+	            var queue = queueString.split(',').map(function (str) { return parseInt(str); });
+	            console.log(queue);
+	        });
+	    };
+	    Controller.prototype.getSanitizedQueueString = function () {
+	        var queue = this.algorithmQueue.value;
+	        queue = queue.replace(/[^\d\,]/gi, '');
+	        this.algorithmQueue.value = queue;
+	        return queue;
 	    };
 	    return Controller;
 	}());
@@ -161,7 +196,7 @@
 	        return _super.call(this) || this;
 	    }
 	    FCFS.prototype.run = function (trackQueue) {
-	        _super.prototype.run.call(this, trackQueue);
+	        return trackQueue;
 	    };
 	    return FCFS;
 	}(AlgorithmBase_1.default));

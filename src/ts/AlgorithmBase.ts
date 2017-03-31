@@ -1,11 +1,10 @@
-class AlgorithmBase {
-    constructor() {
+enum ReadDirection {
+    Left,
+    Right
+}
 
-    }
-
-    run(trackQueue: number[]) {
-
-    }
+abstract class AlgorithmBase {
+    abstract run(trackQueue: number[], start: number, direction?: ReadDirection): number[]
 }
 
 export default AlgorithmBase;
