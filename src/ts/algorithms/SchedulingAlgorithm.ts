@@ -32,6 +32,9 @@ export class SchedulingAlgorithm implements ISchedulingAlgorithm {
                 case ScheduleAlgorithmType.CSCAN: {
                      return this.cscan(start, queue, direction, end);
                 }
+                case ScheduleAlgorithmType.CLOOK: {
+                     return this.clook(start, queue, direction, end);
+                }
                 default: {
                     return null;
                 }
@@ -94,6 +97,23 @@ export class SchedulingAlgorithm implements ISchedulingAlgorithm {
             return queue;
     }
     
+    private clook(
+        start: number, 
+        queue: number[], 
+        direction: Direction, 
+        end: number): number[] {
+             for(let i = 0; i < queue.length-1; i++){
+                var nearestEndPostion = this.getNeareastEnd(i, queue, direction);
+                if(nearestEndPostion == null){
+                    this.swapArrayValues(i+1, this.getFurthestEnd(i, queue), queue);
+                }
+                else{
+                    this.swapArrayValues(i+1, nearestEndPostion, queue);
+                }
+            }
+            return queue;
+    }
+
     private getNeareastEnd(currentPosition: number, queue: number[], direction?: Direction): number{
         switch(direction){
             case Direction.LEFT: {
@@ -133,6 +153,19 @@ export class SchedulingAlgorithm implements ISchedulingAlgorithm {
                 return nearestEndPostion;
             }
         }
+    }
+
+    private getFurthestEnd(currentPosition: number, queue: number[]) {
+        var distance = null as number;
+        var furthestEndPostion = null as number;
+        for(let i = currentPosition+1; i < queue.length; i++){
+            var tmpDistance = Math.abs(queue[currentPosition] - queue[i]);
+            if(tmpDistance > distance || distance == null) {
+                distance = tmpDistance;
+                furthestEndPostion = i;
+            }
+        }
+        return furthestEndPostion;
     }
 
     private swapArrayValues(
