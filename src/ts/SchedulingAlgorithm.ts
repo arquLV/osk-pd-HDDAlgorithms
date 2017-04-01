@@ -7,6 +7,9 @@ interface ISchedulingAlgorithm {
         queue: number[],
         direction?: Direction,
         end?: number): number[];
+    tracksTraversed(queue: number[]): number[];
+    tracksTraversedByStep(queue: number[]): number[];
+    tracksTraversedTotal(queue: number[]): number;
 }
 
 export class SchedulingAlgorithm implements ISchedulingAlgorithm {
@@ -44,11 +47,44 @@ export class SchedulingAlgorithm implements ISchedulingAlgorithm {
             }   
     }
 
-    private fcfs(start: number, queue: number[]): number[] {
+    public tracksTraversed(queue: number[]): number[] {
+        var result = [];
+        for(let i = 0; i < queue.length-1; i++){
+            if(i == 0){
+                result.push(Math.abs(queue[i] - queue[i+1]));
+            }
+            else {
+                result.push(Math.abs(queue[i] - queue[i+1])+result[i-1]);
+            }
+        }
+        return result;
+    }
+
+    public tracksTraversedByStep(queue: number[]): number[] {
+        var result = [];
+        for(let i = 0; i < queue.length-1; i++){
+            result.push(Math.abs(queue[i] - queue[i+1]));
+        }
+        return result;
+    }
+
+    public tracksTraversedTotal(queue: number[]): number {
+        var result = 0;
+        for(let i = 0; i < queue.length-1; i++){
+            result += Math.abs(queue[i] - queue[i+1]);
+        }
+        return result;
+    }
+
+    private fcfs(
+        start: number, 
+        queue: number[]): number[] {
         return queue;
     }
 
-    private sstf(start: number, queue: number[]): number[] {
+    private sstf(
+        start: number, 
+        queue: number[]): number[] {
         for(let i = 0; i < queue.length-1; i++){
             var nearestEndPostion = this.getNeareastEnd(i, queue);
             this.swapArrayValues(i+1, nearestEndPostion, queue);

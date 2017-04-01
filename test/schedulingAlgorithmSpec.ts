@@ -16,8 +16,9 @@ describe("Scheduling algorithm tests", () => {
             const expectedResult = [50, 95, 180, 34, 119, 11, 123, 62, 64].toString();
             const start = 50;
             const queue = [95, 180, 34, 119, 11, 123, 62, 64];
-            var actualResult = schedulingAlgorithm.schedule(fcfsAlgorithm, start, queue);
-            expect(actualResult.toString()).to.equal(expectedResult);
+            var actualResult = schedulingAlgorithm
+                .schedule(fcfsAlgorithm, start, queue).toString();
+            expect(actualResult).to.equal(expectedResult);
         });
     });
 
@@ -29,16 +30,18 @@ describe("Scheduling algorithm tests", () => {
             const expectedResult = [50, 62, 64, 34, 11, 95, 119, 123, 180].toString();
             const start = 50;
             const queue = [95, 180, 34, 119, 11, 123, 62, 64];
-            var actualResult = schedulingAlgorithm.schedule(sstfAlgorithm, start, queue);
-            expect(actualResult.toString()).to.equal(expectedResult);
+            var actualResult = schedulingAlgorithm
+                .schedule(sstfAlgorithm, start, queue).toString();
+            expect(actualResult).to.equal(expectedResult);
         });
 
         it("should return expectedResult_2", () => {
             const expectedResult = [100, 90, 58, 55, 39, 38, 18, 150, 160, 184].toString();
             const start = 100;
             const queue = [55, 58, 39, 18, 90, 160, 150, 38, 184];
-            var actualResult = schedulingAlgorithm.schedule(sstfAlgorithm, start, queue);
-            expect(actualResult.toString()).to.equal(expectedResult);
+            var actualResult = schedulingAlgorithm
+                .schedule(sstfAlgorithm, start, queue).toString();
+            expect(actualResult).to.equal(expectedResult);
         });
     });
 
@@ -52,8 +55,9 @@ describe("Scheduling algorithm tests", () => {
             const queue = [98, 183, 37, 122, 14, 124, 65, 67];
             const direction = Direction.RIGHT;
             const end = 199;
-            var actualResult = schedulingAlgorithm.schedule(scanAlgorithm, start, queue, direction, end);
-            expect(actualResult.toString()).to.equal(expectedResult);
+            var actualResult = schedulingAlgorithm
+                .schedule(scanAlgorithm, start, queue, direction, end).toString();
+            expect(actualResult).to.equal(expectedResult);
         });
 
         it("should return expectedResult when direction is to the LEFT", () => {
@@ -62,8 +66,9 @@ describe("Scheduling algorithm tests", () => {
             const queue = [98, 183, 37, 122, 14, 124, 65, 67];
             const direction = Direction.LEFT;
             const end = 199;
-            var actualResult = schedulingAlgorithm.schedule(scanAlgorithm, start, queue, direction, end);
-            expect(actualResult.toString()).to.equal(expectedResult);
+            var actualResult = schedulingAlgorithm
+                .schedule(scanAlgorithm, start, queue, direction, end).toString();
+            expect(actualResult).to.equal(expectedResult);
         });
     });
 
@@ -77,8 +82,9 @@ describe("Scheduling algorithm tests", () => {
             const queue = [98, 183, 37, 122, 14, 124, 65, 67];
             const direction = Direction.RIGHT;
             const end = 199;
-            var actualResult = schedulingAlgorithm.schedule(cscanAlgorithm, start, queue, direction, end);
-            expect(actualResult.toString()).to.equal(expectedResult);
+            var actualResult = schedulingAlgorithm
+                .schedule(cscanAlgorithm, start, queue, direction, end).toString();
+            expect(actualResult).to.equal(expectedResult);
         });
 
         it("should return expectedResult when direction is to the LEFT", () => {
@@ -87,8 +93,9 @@ describe("Scheduling algorithm tests", () => {
             const queue = [98, 183, 37, 122, 14, 124, 65, 67];
             const direction = Direction.LEFT;
             const end = 199;
-            var actualResult = schedulingAlgorithm.schedule(cscanAlgorithm, start, queue, direction, end);
-            expect(actualResult.toString()).to.equal(expectedResult);
+            var actualResult = schedulingAlgorithm
+            .schedule(cscanAlgorithm, start, queue, direction, end).toString();
+            expect(actualResult).to.equal(expectedResult);
         });
     });
    
@@ -102,8 +109,9 @@ describe("Scheduling algorithm tests", () => {
             const queue = [98, 183, 37, 122, 14, 124, 65, 67];
             const direction = Direction.RIGHT;
             const end = 199;
-            var actualResult = schedulingAlgorithm.schedule(lookAlgorithm, start, queue, direction, end);
-            expect(actualResult.toString()).to.equal(expectedResult);
+            var actualResult = schedulingAlgorithm
+            .schedule(lookAlgorithm, start, queue, direction, end).toString();
+            expect(actualResult).to.equal(expectedResult);
         });
 
         it("should return expectedResult when direction is to the LEFT", () => {
@@ -112,8 +120,9 @@ describe("Scheduling algorithm tests", () => {
             const queue = [98, 183, 37, 122, 14, 124, 65, 67];
             const direction = Direction.LEFT;
             const end = 199;
-            var actualResult = schedulingAlgorithm.schedule(lookAlgorithm, start, queue, direction, end);
-            expect(actualResult.toString()).to.equal(expectedResult);
+            var actualResult = schedulingAlgorithm
+                .schedule(lookAlgorithm, start, queue, direction, end).toString();
+            expect(actualResult).to.equal(expectedResult);
         });
     });
 
@@ -127,8 +136,9 @@ describe("Scheduling algorithm tests", () => {
             const queue = [98, 183, 37, 122, 14, 124, 65, 67];
             const direction = Direction.RIGHT;
             const end = 199;
-            var actualResult = schedulingAlgorithm.schedule(clookAlgorithm, start, queue, direction, end);
-            expect(actualResult.toString()).to.equal(expectedResult);
+            var actualResult = schedulingAlgorithm
+                .schedule(clookAlgorithm, start, queue, direction, end).toString();
+            expect(actualResult).to.equal(expectedResult);
         });
 
         it("should return expectedResult when direction is to the LEFT", () => {
@@ -137,8 +147,60 @@ describe("Scheduling algorithm tests", () => {
             const queue = [98, 183, 37, 122, 14, 124, 65, 67];
             const direction = Direction.LEFT;
             const end = 199;
-            var actualResult = schedulingAlgorithm.schedule(clookAlgorithm, start, queue, direction, end);
-            expect(actualResult.toString()).to.equal(expectedResult);
+            var actualResult = schedulingAlgorithm
+                .schedule(clookAlgorithm, start, queue, direction, end).toString();
+            expect(actualResult).to.equal(expectedResult);
+        });
+    });
+
+    describe("Tracks traversed tests", () => {
+
+        it("should return correct result of tracks traversed for SCAN track queue", () => {
+            const expectedResult = [50, 60, 84, 99, 208, 240, 243, 259, 260, 280].toString();
+            const queue = [100, 150, 160, 184, 199, 90, 58, 55, 39, 38, 18];
+            var actualResult = schedulingAlgorithm.tracksTraversed(queue).toString();
+            expect(actualResult).to.equal(expectedResult);
+        });
+
+        it("should return correct result of tracks traversed for CSCAN track queue", () => {
+            const expectedResult = [11, 58, 77, 100, 299, 311, 366].toString();
+            const queue = [100, 89, 42, 23, 0, 199, 187, 132];
+            var actualResult = schedulingAlgorithm.tracksTraversed(queue).toString();
+            expect(actualResult).to.equal(expectedResult);
+        });
+    });
+
+    describe("Tracks traversed by steps tests", () => {
+
+        it("should return correct result of tracks traversed by steps for SCAN track queue", () => {
+            const expectedResult = [50, 10, 24, 15, 109, 32, 3, 16, 1, 20].toString();
+            const queue = [100, 150, 160, 184, 199, 90, 58, 55, 39, 38, 18];
+            var actualResult = schedulingAlgorithm.tracksTraversedByStep(queue).toString();
+            expect(actualResult).to.equal(expectedResult);
+        });
+
+        it("should return correct result of tracks traversed by steps for CSCAN track queue", () => {
+            const expectedResult = [11, 47, 19, 23, 199, 12, 55].toString();
+            const queue = [100, 89, 42, 23, 0, 199, 187, 132];
+            var actualResult = schedulingAlgorithm.tracksTraversedByStep(queue).toString();
+            expect(actualResult).to.equal(expectedResult);
+        });
+    });
+
+    describe("Tracks traversed total tests", () => {
+
+        it("should return correct result of tracks traversed total for SCAN track queue", () => {
+            const expectedResult = 280;
+            const queue = [100, 150, 160, 184, 199, 90, 58, 55, 39, 38, 18];
+            var actualResult = schedulingAlgorithm.tracksTraversedTotal(queue);
+            expect(actualResult).to.equal(expectedResult);
+        });
+
+        it("should return correct result of tracks traversed total for CSCAN track queue", () => {
+            const expectedResult = 366;
+            const queue = [100, 89, 42, 23, 0, 199, 187, 132];
+            var actualResult = schedulingAlgorithm.tracksTraversedTotal(queue);
+            expect(actualResult).to.equal(expectedResult);
         });
     });
 });
