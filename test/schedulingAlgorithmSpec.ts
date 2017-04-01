@@ -1,4 +1,4 @@
-import { SchedulingAlgorithm } from "../src/ts/algorithms/SchedulingAlgorithm";
+import { SchedulingAlgorithm } from "../src/ts/SchedulingAlgorithm";
 import { ScheduleAlgorithmType, Direction } from "../src/ts/Enums";
 
 var expect = require("chai").expect as Chai.ExpectStatic;

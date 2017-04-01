@@ -3,7 +3,8 @@ export enum ScheduleAlgorithmType {
     SSTF = 2,
     SCAN = 3,
     CSCAN = 4,
-    CLOOK = 5
+    LOOK = 5,
+    CLOOK = 6
 }
 
 export enum Direction {

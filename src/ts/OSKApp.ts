@@ -1,17 +1,15 @@
 import * as paper from "paper";
 
 import Controller from "./Controller";
-import AlgorithmBase from "./AlgorithmBase";
-import FCFS from "./algorithms/FCFS";
 
 interface AlgorithmsContainer {
-    [algorithmID: string]: AlgorithmBase
+    [algorithmID: string]: any;
 }
 
 class OSKApp {
 
     private algorithms: AlgorithmsContainer;
-    private currentAlgorithm: AlgorithmBase;
+    private currentAlgorithm: any;
 
     private controller: Controller;
     private canvas: HTMLCanvasElement;
@@ -21,9 +19,6 @@ class OSKApp {
         this.controller = new Controller();    
 
         this.algorithms = {
-            fcfs: new FCFS(),
-            // sstf: new SSTF()
-            // ../
         };
         
         this.setCurrentAlgorithm('fcfs');

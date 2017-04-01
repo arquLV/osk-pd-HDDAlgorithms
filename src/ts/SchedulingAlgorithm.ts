@@ -1,4 +1,4 @@
-import { ScheduleAlgorithmType, Direction } from "../Enums"
+import { ScheduleAlgorithmType, Direction } from "./Enums"
 
 interface ISchedulingAlgorithm {
     schedule(
