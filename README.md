@@ -4,4 +4,4 @@
 
 1) **npm install**
 2) **gulp**
-3) magic muthafucka
+3) **npm test** - to run unit test

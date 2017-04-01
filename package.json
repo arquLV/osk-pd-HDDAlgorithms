@@ -4,16 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsc -p . && mocha --reporter spec"
   },
   "author": "DF zelts",
   "license": "ISC",
   "devDependencies": {
+    "@types/chai": "^3.4.35",
+    "@types/mocha": "^2.2.40",
+    "@types/node": "^7.0.12",
     "@types/paper": "^0.9.1",
     "browser-sync": "^2.18.8",
+    "chai": "^3.5.0",
     "gulp": "^3.9.1",
     "gulp-sass": "^3.1.0",
     "gulp-typescript": "^3.1.6",
+    "mocha": "^3.2.0",
     "typescript": "^2.2.2",
     "webpack-stream": "^3.2.0"
   }

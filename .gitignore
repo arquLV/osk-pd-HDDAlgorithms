@@ -3,3 +3,5 @@ src/.tmp
 .DS_Store
 dist/main.css
 dist/os.js
+test/*.js
+src/ts/*.js
