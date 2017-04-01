@@ -5,3 +5,8 @@ export enum ScheduleAlgorithmType {
     CSCAN = 4,
     CLOOK = 5
 }
+
+export enum Direction {
+    LEFT = 1,
+    RIGHT = 2
+}
