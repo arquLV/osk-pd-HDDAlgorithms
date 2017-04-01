@@ -32,6 +32,9 @@ export class SchedulingAlgorithm implements ISchedulingAlgorithm {
                 case ScheduleAlgorithmType.CSCAN: {
                      return this.cscan(start, queue, direction, end);
                 }
+                case ScheduleAlgorithmType.LOOK: {
+                     return this.look(start, queue, direction, end);
+                }
                 case ScheduleAlgorithmType.CLOOK: {
                      return this.clook(start, queue, direction, end);
                 }
@@ -97,6 +100,27 @@ export class SchedulingAlgorithm implements ISchedulingAlgorithm {
             return queue;
     }
     
+    private look(
+        start: number, 
+        queue: number[], 
+        direction: Direction, 
+        end: number): number[] {
+            var pivot = queue.length;
+            for(let i = 0; i < queue.length-1; i++){
+                var nearestEndPostion = this.getNeareastEnd(i, queue, direction);
+                if(nearestEndPostion == null) {
+                    pivot = i;
+                    break;
+                }
+                this.swapArrayValues(i+1, nearestEndPostion, queue);
+            }
+            for(let i = pivot; i < queue.length-1; i++){
+                var nearestEndPostion = this.getNeareastEnd(i, queue);
+                this.swapArrayValues(i+1, nearestEndPostion, queue);
+            }
+            return queue;
+    }
+
     private clook(
         start: number, 
         queue: number[], 
