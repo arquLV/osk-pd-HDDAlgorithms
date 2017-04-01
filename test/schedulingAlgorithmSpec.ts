@@ -42,7 +42,7 @@ describe("Scheduling algorithm tests", () => {
         });
     });
 
-    describe("Elevator(Scan) tests", () => {
+    describe("Elevator tests", () => {
 
         const scanAlgorithm = ScheduleAlgorithmType.SCAN;
 
@@ -63,6 +63,31 @@ describe("Scheduling algorithm tests", () => {
             const direction = Direction.LEFT;
             const end = 199;
             var actualResult = schedulingAlgorithm.schedule(scanAlgorithm, start, queue, direction, end);
+            expect(actualResult.toString()).to.equal(expectedResult);
+        });
+    });
+
+    describe("Circular Scan tests", () => {
+
+        const cscanAlgorithm = ScheduleAlgorithmType.CSCAN;
+
+        it("should return expectedResult when direction is to the RIGHT", () => {
+            const expectedResult = [53, 65, 67, 98, 122, 124, 183, 199, 0, 14, 37].toString();
+            const start = 53;
+            const queue = [98, 183, 37, 122, 14, 124, 65, 67];
+            const direction = Direction.RIGHT;
+            const end = 199;
+            var actualResult = schedulingAlgorithm.schedule(cscanAlgorithm, start, queue, direction, end);
+            expect(actualResult.toString()).to.equal(expectedResult);
+        });
+
+        it("should return expectedResult when direction is to the LEFT", () => {
+            const expectedResult = [53, 37, 14, 0, 199, 183, 124, 122, 98, 67, 65].toString();
+            const start = 53;
+            const queue = [98, 183, 37, 122, 14, 124, 65, 67];
+            const direction = Direction.LEFT;
+            const end = 199;
+            var actualResult = schedulingAlgorithm.schedule(cscanAlgorithm, start, queue, direction, end);
             expect(actualResult.toString()).to.equal(expectedResult);
         });
     });

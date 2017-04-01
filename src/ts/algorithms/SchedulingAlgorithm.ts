@@ -29,6 +29,9 @@ export class SchedulingAlgorithm implements ISchedulingAlgorithm {
                 case ScheduleAlgorithmType.SCAN: {
                     return this.scan(start, queue, direction, end);
                 }
+                case ScheduleAlgorithmType.CSCAN: {
+                     return this.cscan(start, queue, direction, end);
+                }
                 default: {
                     return null;
                 }
@@ -68,8 +71,29 @@ export class SchedulingAlgorithm implements ISchedulingAlgorithm {
                 this.swapArrayValues(i+1, nearestEndPostion, queue);
             }
             return queue;
-    } 
+    }
 
+    private cscan(
+        start: number, 
+        queue: number[], 
+        direction: Direction, 
+        end: number): number[] {
+            for(let i = 0; i < queue.length-1; i++){
+                var nearestEndPostion = this.getNeareastEnd(i, queue, direction);
+                if(nearestEndPostion == null){
+                    direction == Direction.LEFT ? queue.push(0): queue.push(end);
+                    this.swapArrayValues(i+1, queue.length-1, queue);
+                    direction == Direction.RIGHT ? queue.push(0): queue.push(end);
+                    this.swapArrayValues(i+2, queue.length-1, queue);
+                    i++;
+                }
+                else{
+                    this.swapArrayValues(i+1, nearestEndPostion, queue);
+                }
+            }
+            return queue;
+    }
+    
     private getNeareastEnd(currentPosition: number, queue: number[], direction?: Direction): number{
         switch(direction){
             case Direction.LEFT: {
