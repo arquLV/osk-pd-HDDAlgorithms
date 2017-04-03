@@ -12,7 +12,7 @@ interface ISchedulingAlgorithm {
     tracksTraversedTotal(queue: number[]): number;
 }
 
-class SchedulingAlgorithm implements ISchedulingAlgorithm {
+export class SchedulingAlgorithm implements ISchedulingAlgorithm {
 
     public schedule(
         algorithm: ScheduleAlgorithmType, 
