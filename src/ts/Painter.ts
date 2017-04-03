@@ -16,6 +16,7 @@ class Painter {
     private axisHeight: number = 15;
     private textPadding: number = 12;
     private xScale: number = 2;
+    private mask: paper.Path;
 
     /**
      * 
@@ -27,6 +28,7 @@ class Painter {
         this.nCylinders = nCylinders;
 
         paper.setup(this.canvas);
+        paper.view.onFrame = this.frame.bind(this);
 
         this.drawAxis();
     }
@@ -117,6 +119,21 @@ class Painter {
 
         path.smooth({type: 'geometric'});
         paper.view.draw();
+
+        this.mask = paper.Path.Rectangle({
+            point: [0, this.yPadding],
+            size: [
+                (this.nCylinders - 1 + this.xPadding * 2) * this.xScale, 
+                10 * this.rowHeight
+            ],
+            fillColor: '#C5CAE9'
+        })
+    }
+
+    private frame(event: paper.IFrameEvent) {
+        if(this.mask) {
+            this.mask.position.y += 1;
+        }
     }
 
 }
