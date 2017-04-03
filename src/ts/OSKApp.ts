@@ -3,6 +3,7 @@ import * as paper from "paper";
 import { ScheduleAlgorithmType, Direction } from "./Enums";
 import Controller from "./Controller";
 import SchedulingAlgorithm from "./SchedulingAlgorithm";
+import Painter from "./Painter";
 
 
 class OSKApp {
@@ -15,10 +16,10 @@ class OSKApp {
     private controller: Controller;
     private schedulingAlgorithm: SchedulingAlgorithm;
 
-    private canvas: HTMLCanvasElement;
+    private painter: Painter;
 
     constructor(canvas: HTMLCanvasElement) {
-        this.canvas = canvas;
+        this.painter = new Painter(canvas, 200);
         this.controller = new Controller();    
         this.schedulingAlgorithm = new SchedulingAlgorithm();
         
@@ -29,18 +30,6 @@ class OSKApp {
         this.setCurrentAlgorithm('FCFS');
         this.controller.onAlgorithmChange(this.setCurrentAlgorithm.bind(this));
         this.controller.onClickRun(this.runAlgorithmWithQueue.bind(this));
-
-        paper.setup(this.canvas);
-
-        // Test stuff
-        var path = new paper.Path();
-        var start = new paper.Point(100, 100);
-        path.moveTo(start);
-        path.strokeColor = 'black';
-        path.lineTo(start.add([150, 100]));
-        path.lineTo(start.add([100, -50]));
-        path.smooth();
-        paper.view.draw();        
     }
 
     private setCurrentAlgorithm(algorithmID: string) {
@@ -50,7 +39,6 @@ class OSKApp {
 
     private runAlgorithmWithQueue(queue: number[]) {
         console.log(queue);
-
         const result = this.schedulingAlgorithm.schedule(
             this.currentAlgorithm,
             this.startPosition,
@@ -59,6 +47,8 @@ class OSKApp {
             this.endPosition
         );
         console.log(result);
+
+        this.painter.paint(result);
     }
 }
 
