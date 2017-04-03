@@ -12,7 +12,7 @@ interface ISchedulingAlgorithm {
     tracksTraversedTotal(queue: number[]): number;
 }
 
-export class SchedulingAlgorithm implements ISchedulingAlgorithm {
+class SchedulingAlgorithm implements ISchedulingAlgorithm {
 
     public schedule(
         algorithm: ScheduleAlgorithmType, 
@@ -237,4 +237,5 @@ export class SchedulingAlgorithm implements ISchedulingAlgorithm {
             queue[index2] = tmpValue;
     }
 }
-module.exports = SchedulingAlgorithm;
+
+export default SchedulingAlgorithm;

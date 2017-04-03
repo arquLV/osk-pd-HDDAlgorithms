@@ -7,6 +7,7 @@ class Controller {
     private algorithmRunButton: HTMLButtonElement;
 
     private algorithmChangeCallback: (algorithmID: string) => void;
+    private algorithmRunCallback: (queue: number[]) => void;
 
     constructor() {
         this.algorithmSelect = <HTMLSelectElement>document.getElementById('algorithm-select');
@@ -22,7 +23,7 @@ class Controller {
     private setupSelectListener() {
         this.algorithmSelect.addEventListener('change', () => {
             console.log(this.algorithmSelect.value);
-            this.algorithmChangeCallback(this.algorithmSelect.value);
+            this.algorithmChangeCallback(this.algorithmSelect.value.toUpperCase());
         });
     }
     public onAlgorithmChange(callback: (algorithmID: string) => void) {
@@ -42,13 +43,18 @@ class Controller {
         });
     }
 
+    public onClickRun(callback: (queue: number[]) => void) {
+        this.algorithmRunCallback = callback;
+    }
+
     private setupRunButton() {
         this.algorithmRunButton.addEventListener('click', event => {
             event.preventDefault();
-            const queueString = this.getSanitizedQueueString();
-            const queue = queueString.split(',').map(str => parseInt(str));
 
-            console.log(queue);
+            const queueString = this.getSanitizedQueueString();
+            const queue: number[] = queueString.split(',').map(str => parseInt(str));
+
+            this.algorithmRunCallback(queue);
         });
     }
 

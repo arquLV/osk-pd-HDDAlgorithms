@@ -1,28 +1,34 @@
 import * as paper from "paper";
 
+import { ScheduleAlgorithmType, Direction } from "./Enums";
 import Controller from "./Controller";
+import SchedulingAlgorithm from "./SchedulingAlgorithm";
 
-interface AlgorithmsContainer {
-    [algorithmID: string]: any;
-}
 
 class OSKApp {
 
-    private algorithms: AlgorithmsContainer;
-    private currentAlgorithm: any;
+    private currentAlgorithm: ScheduleAlgorithmType;
+    private currentDirection: Direction;
+    private startPosition: number;
+    private endPosition: number;
 
     private controller: Controller;
+    private schedulingAlgorithm: SchedulingAlgorithm;
+
     private canvas: HTMLCanvasElement;
 
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
         this.controller = new Controller();    
-
-        this.algorithms = {
-        };
+        this.schedulingAlgorithm = new SchedulingAlgorithm();
         
-        this.setCurrentAlgorithm('fcfs');
+        this.currentDirection = Direction.RIGHT;        // temp, šim kontroli pēctam noimplementēsim, pagaidām vnk statisks
+        this.startPosition = 50;                        // arī temp
+        this.endPosition = 100;                         // same
+
+        this.setCurrentAlgorithm('FCFS');
         this.controller.onAlgorithmChange(this.setCurrentAlgorithm.bind(this));
+        this.controller.onClickRun(this.runAlgorithmWithQueue.bind(this));
 
         paper.setup(this.canvas);
 
@@ -38,10 +44,21 @@ class OSKApp {
     }
 
     private setCurrentAlgorithm(algorithmID: string) {
-        if(this.algorithms.hasOwnProperty(algorithmID)) {
-            this.currentAlgorithm = this.algorithms[algorithmID];
-            console.log(this.currentAlgorithm);
-        }
+        this.currentAlgorithm = ScheduleAlgorithmType[algorithmID];
+        console.log(this.currentAlgorithm);
+    }
+
+    private runAlgorithmWithQueue(queue: number[]) {
+        console.log(queue);
+
+        const result = this.schedulingAlgorithm.schedule(
+            this.currentAlgorithm,
+            this.startPosition,
+            queue,
+            this.currentDirection,
+            this.endPosition
+        );
+        console.log(result);
     }
 }
 
