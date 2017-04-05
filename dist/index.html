@@ -46,9 +46,20 @@
                         </div>
                     </div>
                 </form>
+                <div id="results" class="hidden">
+                    <h3>Rezultāti:</h3>
+                    <div><span class="title">Apstaigāšanas secība:</span><span id="steps"></span></div>
+                    <div><span class="title">Apstaigāto skaits:</span><span id="total"></span></div>
+                </div>
             </div>
             <div class="canvas-wrapper">
-            <canvas id="main-canvas" height=800 width=600></canvas>
+                <canvas id="main-canvas" height=800 width=600></canvas>
+
+                <div id="scale-slider">
+                    <h3>Mērogs</h3>
+                    <input type="hidden" id="scale" value=60 />
+                    <a href="javascript:;"><span class="fill"></span><span class="toggle"></span></a>
+                </div>
             </div>
         </main>
 

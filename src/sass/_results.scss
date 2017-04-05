@@ -1,0 +1,36 @@
+div#results {
+    position: relative;
+    z-index: 0;
+    opacity: 1;
+    @include transition(opacity, 100, ease-out);
+    &.hidden {
+        opacity: 0;
+        z-index: -9999;
+    }
+
+    h3 {
+        color: $primary-light;
+        font-size: 1.2em;
+        font-weight: 300;
+        margin-bottom: 10px;
+    }
+
+    div {
+        margin-top: 15px;
+        .title {
+            color: $divider;
+            font-weight: 200;
+            display: inline-block;
+            padding: 0 10px 5px 2px;
+            font-size: (12/16)+em;     
+
+            &+span {
+                display: inline-block;
+                font-size: (14 / 16)+em;
+                color: $primary-text-light*0.8;
+                padding: 3px 0 0 5px;
+            }
+
+        }
+    }
+}

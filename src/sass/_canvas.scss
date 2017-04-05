@@ -8,4 +8,60 @@ div.canvas-wrapper {
     canvas {
         margin: 30px 0 0 30px;
     }
+
+    #scale-slider {
+        position: absolute;
+        width: 300px;
+        margin: 0 50px;
+        bottom: 50px;
+        left: 100px;
+
+        h3 {
+            text-transform: uppercase;
+            font-family: $font-main;
+            color: $primary-text-dark*1.2;
+            font-weight: 200;
+            font-size: 1em;
+        }
+
+        a {
+            position: relative;
+            display: block;
+            height: 3px;
+            width: 100%;
+            border-radius: 3px;
+            background: $accent;
+            margin: 20px 0 12px;
+
+              -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+
+            .fill {
+                display: block;
+                height: 3px;
+                border-radius: 3px;
+                width: 60%;
+                position: absolute;
+                left: 0;
+                top: 0;
+                background: $primary-dark;
+            }
+
+            .toggle {
+                display: block;
+                height: 14px;
+                width: 14px;
+                border-radius: 100%;
+                position: absolute;
+                background: $primary-dark;
+                left: 60%;
+                top: 50%;
+                @include transform(translate(-50%,-50%));
+                
+            }
+        }
+    }
 }
