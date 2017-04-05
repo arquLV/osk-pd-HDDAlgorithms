@@ -1,7 +1,12 @@
-# OSK Superprojekts
+# Cieto disku plānošanas algoritmi
+**Autori:** Artūrs Kurzemnieks, Edgars Andrucis, Dāvis Nicmanis
 
-## How do I even?
+## Kā palaist?
 
+Rakstīts ar **TypeScript**, projekta direktorijā caur konsoli jāpalaiž:
 1) **npm install**
 2) **gulp**
-3) **npm test** - to run unit test
+
+**npm test** - lai palaistu dažus esošos unit testus
+
+*Ieteicams laist uz Chrome, uz citiem nav testēts :)*
