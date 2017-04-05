@@ -4,7 +4,7 @@ import { ScheduleAlgorithmType, Direction } from "../src/ts/Enums";
 var expect = require("chai").expect as Chai.ExpectStatic;
 var sa = require("../src/ts/SchedulingAlgorithm");
 
-const schedulingAlgorithm = new sa() as SchedulingAlgorithm;
+const schedulingAlgorithm = new sa.SchedulingAlgorithm() as SchedulingAlgorithm;
 
 describe("Scheduling algorithm tests", () => {  
 
