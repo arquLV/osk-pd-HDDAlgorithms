@@ -25,11 +25,28 @@
                     <label for="algorithm-queue">Pieprasījumi</label>
                     <textarea id="algorithm-queue" cols="30">95,180,34,119,11,123,62,64</textarea>
 
-                    <button class="button-primary" id="algorithm-run">Vizualizēt</button>
+                    <div class="row">
+                        <div class="col-half hidden" id="optional-container">
+                            <label for="algorithm-start">Sākums</label>
+                            <input id="algorithm-start" class="number-only" type="text" value=50 /> 
+
+                            <label for="algorithm-end">Beigas</label>
+                            <input id="algorithm-end" class="number-only" type="text" value=100 /> 
+                            
+                            <div id="direction-switch" class="right">
+                                <label>Virziens</label>
+                                <input type="hidden" value="right" />
+                                <a href="javascript:;"><span class="toggle"></span></a>
+                            </div>
+                        </div>
+                        <div class="col-half">
+                            <button class="button-primary" id="algorithm-run">Vizualizēt</button>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="canvas-wrapper">
-            <canvas id="main-canvas" height=600 width=600></canvas>
+            <canvas id="main-canvas" height=800 width=800></canvas>
             </div>
         </main>
 

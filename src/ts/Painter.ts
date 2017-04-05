@@ -46,7 +46,8 @@ class Painter {
             point: [this.xPadding * this.xScale, this.axisHeight + this.textPadding],
             content: '0',
             fillColor: 'black',
-            fontFamily: 'Courier New',
+            fontFamily: 'Helvetica',
+            fontWeight: 'bold',
             justification: 'center',
             fontSize: 14
         });
@@ -63,7 +64,8 @@ class Painter {
             point: [(this.nCylinders - 1 + this.xPadding) * this.xScale, this.axisHeight + this.textPadding],
             content: this.nCylinders - 1,
             fillColor: 'black',
-            fontFamily: 'Courier New',
+            fontFamily: 'Helvetica',
+            fontWeight: 'bold',
             justification: 'center',
             fontSize: 14
         });
@@ -103,7 +105,8 @@ class Painter {
                 point: [(queue[i] + this.xPadding) * this.xScale, this.axisHeight + this.textPadding],
                 content: queue[i],
                 fillColor: 'black',
-                fontFamily: 'Courier New',
+                fontFamily: 'Helvetica',
+                fontWeight: 'bold',
                 justification: 'center',
                 fontSize: 14
             });

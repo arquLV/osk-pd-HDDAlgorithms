@@ -5,3 +5,11 @@
     -o-transition: $prop $ms+ms $easing;
     transition: $prop $ms+ms $easing;
 }
+
+@mixin transform($transform) {
+    transform: $transform;
+    -webkit-transform: $transform;
+    -moz-transform: $transform;
+    -o-transform: $transform;
+    -ms-transform: $transform;
+}

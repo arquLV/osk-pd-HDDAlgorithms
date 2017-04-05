@@ -10,8 +10,6 @@ class OSKApp {
 
     private currentAlgorithm: ScheduleAlgorithmType;
     private currentDirection: Direction;
-    private startPosition: number;
-    private endPosition: number;
 
     private controller: Controller;
     private schedulingAlgorithm: SchedulingAlgorithm;
@@ -24,11 +22,10 @@ class OSKApp {
         this.schedulingAlgorithm = new SchedulingAlgorithm();
         
         this.currentDirection = Direction.RIGHT;        // temp, šim kontroli pēctam noimplementēsim, pagaidām vnk statisks
-        this.startPosition = 50;                        // arī temp
-        this.endPosition = 100;                         // same
 
         this.setCurrentAlgorithm('FCFS');
         this.controller.onAlgorithmChange(this.setCurrentAlgorithm.bind(this));
+        this.controller.onDirectionChange(this.setCurrentDirection.bind(this));
         this.controller.onClickRun(this.runAlgorithmWithQueue.bind(this));
     }
 
@@ -37,14 +34,17 @@ class OSKApp {
         console.log(this.currentAlgorithm);
     }
 
-    private runAlgorithmWithQueue(queue: number[]) {
-        console.log(queue);
+    private setCurrentDirection(direction: Direction) {
+        this.currentDirection = direction;
+    }
+
+    private runAlgorithmWithQueue(queue: number[], start: number, end: number) {
         const result = this.schedulingAlgorithm.schedule(
             this.currentAlgorithm,
-            this.startPosition,
+            start,
             queue,
             this.currentDirection,
-            this.endPosition
+            end
         );
         console.log(result);
 

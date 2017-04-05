@@ -1,0 +1,10 @@
+div.row {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+
+    div.col-half {
+        float: left;
+        width: 50%;
+    }
+}
