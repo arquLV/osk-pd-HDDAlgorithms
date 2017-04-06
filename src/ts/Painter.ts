@@ -84,7 +84,6 @@ class Painter {
     public paint(queue: number[]) {
         paper.project.activeLayer.removeChildren();
         this.drawAxis();
-
         let path = new paper.Path();
         path.strokeColor = 'black';
 
@@ -127,10 +126,15 @@ class Painter {
             point: [0, this.yPadding],
             size: [
                 (this.nCylinders - 1 + this.xPadding * 2) * this.xScale, 
-                10 * this.rowHeight
+                queue.length * this.rowHeight
             ],
             fillColor: '#C5CAE9'
         })
+    }
+
+    public scale(value: number, queue: number[]) {
+        this.xScale = 1 + value / 50;
+        this.paint(queue);
     }
 
     private frame(event: paper.IFrameEvent) {

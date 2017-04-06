@@ -17,10 +17,13 @@ class OSKApp {
 
     private scalingSlider: ScalingSlider;
     private painter: Painter;
+    private isDrawn: boolean = false;
 
     private resultsContainer: HTMLDivElement;
     private resultsSteps: HTMLSpanElement;
     private resultsTotal: HTMLSpanElement;
+
+    private currentQueue: number[];
 
     constructor(canvas: HTMLCanvasElement) {
         this.painter = new Painter(canvas, 200);
@@ -29,6 +32,9 @@ class OSKApp {
         this.scalingSlider = new ScalingSlider();   
         this.scalingSlider.onSliderChange(value => {
             console.log(value);
+            if(this.isDrawn) {
+                this.painter.scale(value, this.currentQueue);
+            }
         });
 
         this.schedulingAlgorithm = new SchedulingAlgorithm();
@@ -67,6 +73,9 @@ class OSKApp {
         this.painter.paint(result);
         this.resultsContainer.classList.remove('hidden');
         this.showTextResults(result);
+
+        this.currentQueue = result;
+        this.isDrawn = true;
     }
 
     private showTextResults(result: number[]) {
